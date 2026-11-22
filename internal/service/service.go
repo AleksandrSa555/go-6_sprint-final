@@ -12,7 +12,10 @@ func Convert(s string) (string, error) {
 		return "", fmt.Errorf("пустая строка")
 	}
 
-	if strings.Trim(s, ".- \n\r") == "" {
+	isMorse := !strings.ContainsFunc(s, func(r rune) bool {
+		return r != '.' && r != '-' && r != ' ' && r != '\n' && r != '\r'
+	})
+	if isMorse {
 		return morse.ToText(s), nil
 	}
 	return morse.ToMorse(s), nil

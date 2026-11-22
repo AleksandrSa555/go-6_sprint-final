@@ -12,6 +12,8 @@ func main() {
 
 	serv := server.NewServer(logger)
 
+	logger.Println("Сервер запускается на порту :8080")
+
 	err := serv.Server.ListenAndServe()
 	if err != nil {
 		logger.Fatal(err)
